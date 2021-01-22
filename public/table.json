@@ -1,0 +1,41 @@
+{
+  "list": [
+    {
+      "id": 1,
+      "name": "张三",
+      "money": 123,
+      "address": "广东省东莞市长安镇",
+      "status": 1,
+      "date": "2021-01-14T17:50:07.498+08:00",
+      "thumb": "https://lin-xin.gitee.io/images/post/wms.png"
+    },
+    {
+      "id": 2,
+      "name": "李四",
+      "money": 456,
+      "address": "广东省广州市白云区",
+      "status": 1,
+      "date": "2021-01-14T17:49:59.531+08:00",
+      "thumb": "https://lin-xin.gitee.io/images/post/node3.png"
+    },
+    {
+      "id": 3,
+      "name": "王五",
+      "money": 789,
+      "address": "湖南省长沙市",
+      "status": 0,
+      "date": "2021-01-14T17:50:02.648+08:00",
+      "thumb": "https://lin-xin.gitee.io/images/post/parcel.png"
+    },
+    {
+      "id": 4,
+      "name": "赵六",
+      "money": 1011,
+      "address": "福建省厦门市鼓浪屿",
+      "status": 1,
+      "date": "2021-01-14T17:49:54.144+08:00",
+      "thumb": "https://lin-xin.gitee.io/images/post/notice.png"
+    }
+  ],
+  "pageTotal": 4
+}
