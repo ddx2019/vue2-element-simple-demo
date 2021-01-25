@@ -13,16 +13,16 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "element-ui": "^2.15.0",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
-    "vue-schart": "^2.0.0",
-    "vuex": "^3.4.0",
     "dayjs": "^1.10.1",
     "default-passive-events": "^2.0.0",
-    "echarts": "^4.9.0",
+    "echarts": "^5.0.1",
+    "element-ui": "^2.15.0",
     "hls.js": "^0.14.17",
-    "vue-json-viewer": "^2.2.17"
+    "vue": "^2.6.11",
+    "vue-json-viewer": "^2.2.17",
+    "vue-router": "^3.2.0",
+    "vue-schart": "^2.0.0",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -33,20 +33,20 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "sass": "^1.26.5",
-    "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "compression-webpack-plugin": "6.1.1",
+    "eslint": "^6.7.2",
     "eslint-config-alloy": "^3.8.2",
+    "eslint-plugin-vue": "^6.2.2",
     "mockjs": "^1.1.0",
     "mux.js": "^5.7.0",
     "pdfjs-dist": "^2.5.207",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
     "svg-sprite-loader": "^5.0.0",
     "video.js": "^7.10.2",
     "videojs-contrib-hls": "^5.15.0",
-    "vue-eslint-parser": "^7.1.1"
+    "vue-eslint-parser": "^7.1.1",
+    "vue-template-compiler": "^2.6.11"
   }
 }

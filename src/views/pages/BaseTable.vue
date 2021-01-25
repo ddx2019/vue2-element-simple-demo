@@ -227,7 +227,7 @@ export default {
     }
   },
   mounted() {
-    this.btns = this.$getOperateInfo('SCHEME_TEMP');
+    this.btns = this.$getOperateInfo('THE_EXAMPLE');
     this.getData(this.tableInfo);
 
     window.onresize = () => {
@@ -334,7 +334,7 @@ export default {
     getData(info) {
       fetchData(info)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.tableData = res.list;
           this.$set(this.myPages, 'total', res.pageTotal);
         })

@@ -25,13 +25,18 @@ export default {
       btnsType: ['success', 'info', 'warning', 'danger', '']
     };
   },
-  mounted() {
-    this.handleBtnsType();
-  },
   computed: {
     operateBtns() {
       return this.btns;
     }
+  },
+  watch: {
+    btns: {
+      handler(newVal, old) {
+        this.handleBtnsType();
+      }
+    },
+    deep: true
   },
   methods: {
     handleClickBtn(val) {
@@ -39,15 +44,11 @@ export default {
     },
     handleBtnsType() {
       // btn 随机type
-      let result = this.btns;
-      result.forEach((val) => {
-        if (!val.type) {
-          let tagIndex = Math.floor(Math.random() * 5);
-          let type = this.btnsType[tagIndex];
-          val['type'] = type;
-        }
+      this.btns.forEach((val) => {
+        if (val.type) return;
+        let tagIndex = Math.floor(Math.random() * 5);
+        val['type'] = this.btnsType[tagIndex];
       });
-      return result;
     }
   }
 };
