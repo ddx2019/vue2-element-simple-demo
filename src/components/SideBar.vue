@@ -65,17 +65,17 @@ export default {
         },
         {
           icon: 'el-icon-coin',
-          index: '/table',
+          index: 'table',
           title: '基础表格'
         },
         {
           icon: 'el-icon-coin',
-          index: '/pdf',
+          index: 'pdf',
           title: '预览PDF'
         },
         {
           icon: 'el-icon-coin',
-          index: '/videojs',
+          index: 'videojs',
           title: 'videojs播放视频'
         },
         {

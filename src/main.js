@@ -8,8 +8,10 @@ import './plugins/jsonViewer.js';
 import './icons';
 import 'default-passive-events'; //添加事件管理者'passive'，来阻止'touchstart'事件，让页面更加流畅。 解决chrome下的warning问题
 import './assets/style/main.css';
+import './assets/theme/green.scss';
 import './assets/style/common.scss';
 import './utils/directive.js';
+
 import { getViewHeight } from '@/utils/getViewHeight.js';
 import { getOperateInfo } from '@/enums/OperateBtn.js';
 import { filterAddUpdate } from '@/enums/filtersAboutOpt.js';

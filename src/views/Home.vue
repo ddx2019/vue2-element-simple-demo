@@ -65,22 +65,7 @@ export default {
     $route: {
       handler(to, from) {
         // 添加规则和各规则以及质检报告，离开这些页面之后，它的tag都需关闭
-        let arrs = [
-          'addRules',
-          'nullCheck',
-          'rangeCheck',
-          'normCheck',
-          'logicCheck',
-          'repeatCheck',
-          'timelinessCheck',
-          'missingCheck',
-          'quoteCheck',
-          'outliersCheck',
-          'fluctuationCheck',
-          'balanceCheck',
-          'sqlCheck',
-          'project'
-        ];
+        let arrs = ['project'];
         if (arrs.includes(from.name)) {
           this.handleUpdateTags(from.name);
         }
