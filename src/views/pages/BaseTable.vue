@@ -63,11 +63,14 @@
               <template slot-scope="scope">
                 <button
                   class="download_btn mr10"
-                  @click="handleClickRow(scope.row)"
+                  @click="handleClickEditRow(scope.row)"
                 >
                   <i class="el-icon-edit"></i> 修改
                 </button>
-                <button class="detail_btn " @click="handleClickRow(scope.row)">
+                <button
+                  class="detail_btn "
+                  @click="handleClickDelRow(scope.row)"
+                >
                   <i class="el-icon-delete"></i> 删除
                 </button>
               </template>
@@ -277,8 +280,11 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },
-    handleClickRow(row) {
-      console.log(row);
+    handleClickEditRow(row) {
+      console.log(row, '编辑行');
+    },
+    handleClickDelRow(row) {
+      console.log(row, '删除行');
     },
     handleSizeChange(val) {
       this.$set(this.tableInfo, 'pageSize', val);
