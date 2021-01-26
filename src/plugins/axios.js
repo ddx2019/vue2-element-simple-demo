@@ -6,14 +6,21 @@
 //   timeout: 3000,
 //   withCredentials: true
 // });
-
+// const arrs = ['/comn/test', '/comn/test2'];
+// // 请求拦截
 // _axios.interceptors.request.use(
 //   (config) => {
-//     if (config.method === 'post' && !(config.data instanceof FormData)) {
+//     if (arrs.includes(config.url)) {
 //       config.headers = {
-//         'Content-Type': 'application/x-www-form-urlencoded'
+//         'Content-Type': 'application/json',
+//         'X-Access-Token': JSON.parse(localStorage.getItem('loginStatus')).token
 //       };
-//       config.data = qs.stringify(config.data, { allowDots: true });
+//     } else if (config.method === 'post' && !(config.data instanceof FormData)) {
+//       config.headers = {
+//         'Content-Type': 'application/x-www-form-urlencoded',
+//         'X-Access-Token': JSON.parse(localStorage.getItem('loginStatus')).token
+//       };
+//       config.data = qs.stringify(config.data, { allowDots: true }); // FormData传参允许为 params[0].name的格式；
 //     }
 //     return config;
 //   },
@@ -21,13 +28,21 @@
 //     return Promise.reject(error);
 //   }
 // );
+
+// // 响应拦截
 // _axios.interceptors.response.use(
 //   (res) => {
-//     if (res.data.code !== 0) {
-//       Message.error(res.data.msg);
+//     if (res.data.code === 0) {
+//       return res;
+//     } else {
+//       Message.error(res.data.message);
+//       if (res.data.code === 2010) {
+//         // 特殊错误处理，登录超时
+//         localStorage.removeItem('loginStatus');
+//         Router.push({ path: '/login' });
+//       }
 //       return res;
 //     }
-//     return res;
 //   },
 //   (err) => {
 //     return Promise.reject(err);
