@@ -32,7 +32,7 @@
     position: static; // 兼容IE11 ,取消原有的position定位
   }
   .el-dialog__close {
-    color: $header_bg;
+    color: #409eff;
     font-size: 20px;
     font-weight: bolder;
     position: absolute;
@@ -40,7 +40,7 @@
     right: 8px;
     &::after {
       content: '';
-      border: 2px solid $header_bg;
+      border: 2px solid #409eff;
       width: 20px;
       height: 20px;
       border-radius: 25px;

@@ -19,7 +19,7 @@
     </div>
 
     <br />
-    <el-button type="primary" @click="iconPopupVisible = true">
+    <el-button type="danger" @click="iconPopupVisible = true">
       点击显示图标选择器
     </el-button>
     <a-icon
