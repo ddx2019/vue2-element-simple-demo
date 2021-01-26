@@ -26,11 +26,18 @@ const routes = [
         component: () => import('@/views/pages/BaseTable.vue'),
         meta: { title: '基础表格' }
       },
+
       {
         path: '/markdown',
         name: 'markdown',
         component: () => import('@/components/MarkDown.vue'),
         meta: { title: 'MarkDown' }
+      },
+      {
+        path: '/cronExp',
+        name: 'cronExp',
+        component: () => import('@/views/pages/UsedCronModal.vue'),
+        meta: { title: '定时任务与cron表达式' }
       },
       {
         path: '/antdIcon',

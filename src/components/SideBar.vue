@@ -71,12 +71,18 @@ export default {
         {
           icon: 'el-icon-notebook-2',
           index: 'markdown',
-          title: 'markdown编辑器'
+          title: '编辑器'
         },
+        {
+          icon: 'el-icon-document',
+          index: 'cronExp',
+          title: 'cron表达式'
+        },
+
         {
           icon: 'el-icon-info',
           index: 'antdIcon',
-          title: 'antd的icon'
+          title: '图标选择器'
         },
 
         {

@@ -56,6 +56,32 @@ export default {
           this.$message.success('登录成功');
           localStorage.setItem('ms_username', this.param.username);
           this.$router.push('/');
+          //  Login(this.param)
+          //   .then(res => {
+          //     if (res.data.code === 0) {
+          //       let role = res.data.role;
+          //       let resourceTypes = role.map(val => val.rId);
+          //       resourceTypes = [...new Set(resourceTypes)].toString(); // 利用ES6的Set 去重，并转为字符串
+
+          //       localStorage.setItem(
+          //         "loginStatus",
+          //         JSON.stringify({
+          //           token: res.data.token,
+          //           ms_username: res.data.userInfo.name
+          //         })
+          //       );
+          //       localStorage.setItem(
+          //         "resourceTypes",
+          //         JSON.stringify({ role: resourceTypes })
+          //       ); // 角色id ,动态路由的时候，需根据角色id来获取权限 ；
+
+          //       this.$router.push("/");
+          //       this.$message.success("登录成功");
+          //     }
+          //   })
+          //   .catch(err => {
+          //     console.log(err);
+          //   });
         } else {
           this.$message.error('请输入账号和密码');
           console.log('error submit!!');
