@@ -167,13 +167,6 @@ export default {
     this.initChart();
   },
   methods: {
-    diffDay(start, end) {
-      // 获取时间差，相差的天数
-      const date1 = dayjs(start);
-      const date2 = dayjs(end);
-      let diffTime = Math.abs(date1.diff(date2, 'second')); //获取两个时间对象相差的天数，取绝对值。
-      return diffTime;
-    },
     setChartOption() {
       this.statusOption = JSON.parse(JSON.stringify(DATASET_SIMPLE));
       this.rTypeOption = JSON.parse(JSON.stringify(PIE_DOUGHNUT));
