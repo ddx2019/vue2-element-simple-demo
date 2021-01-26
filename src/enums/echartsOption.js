@@ -13,6 +13,7 @@ export const DATASET_SIMPLE = {
   },
   xAxis: { type: 'category' },
   yAxis: {},
+
   // Declare several bar series, each will be mapped
   // to a column of dataset.source by default.
   series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
@@ -21,18 +22,18 @@ export const DATASET_SIMPLE = {
 // 环形图
 export const PIE_DOUGHNUT = {
   // 图形中间文字
-  graphic: {
-    type: 'text',
-    left: 'center',
-    top: 'center',
-    style: {
-      //数据总量
-      text: '',
-      textAlign: 'center',
-      fill: 'black',
-      fontSize: 35
-    }
-  },
+  // graphic: {
+  //   type: 'text',
+  //   left: 'center',
+  //   top: 'center',
+  //   style: {
+  //     //数据总量
+  //     text: '',
+  //     textAlign: 'center',
+  //     fill: 'black',
+  //     fontSize: 25
+  //   }
+  // },
   color: ['#71de2d', '#f1d604', '#f56c6c'],
   title: {
     text: '产品趋势图',
@@ -62,7 +63,7 @@ export const PIE_DOUGHNUT = {
       emphasis: {
         label: {
           show: true,
-          fontSize: '22',
+          fontSize: '18',
           fontWeight: 'bold'
         }
       },

@@ -27,6 +27,12 @@ const routes = [
         meta: { title: '基础表格' }
       },
       {
+        path: '/markdown',
+        name: 'markdown',
+        component: () => import('@/components/MarkDown.vue'),
+        meta: { title: 'MarkDown' }
+      },
+      {
         path: '/pdf',
         name: 'pdf',
         component: () => import('@/views/pages/PreviewPDF.vue'),

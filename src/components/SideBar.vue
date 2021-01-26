@@ -64,17 +64,22 @@ export default {
           title: '系统首页'
         },
         {
-          icon: 'el-icon-coin',
+          icon: 'el-icon-s-grid',
           index: 'table',
           title: '基础表格'
         },
         {
-          icon: 'el-icon-coin',
+          icon: 'el-icon-notebook-2',
+          index: 'markdown',
+          title: 'markdown编辑器'
+        },
+        {
+          icon: 'el-icon-document',
           index: 'pdf',
           title: '预览PDF'
         },
         {
-          icon: 'el-icon-coin',
+          icon: 'el-icon-video-camera',
           index: 'videojs',
           title: 'videojs播放视频'
         },

@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import './plugins/element.js';
+import './plugins/mavonEditor';
 import './plugins/video.js';
 import './plugins/jsonViewer.js';
 import './icons';
