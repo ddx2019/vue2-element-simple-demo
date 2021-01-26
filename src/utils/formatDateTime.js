@@ -34,11 +34,13 @@ export function diffSecond(start, end) {
   const second_time = Math.abs(startTime - endTime) / 1000; // 得到相差的秒数
   return second_time;
 }
-// diffSecondByDayjs('2021-01-15T14:44:40.263+08:00','2021-01-15T14:44:00.001+08:00'); // 40
-// diffSecondByDayjs('2021-01-15 15:26:30','2021-01-15 15:26:45'); // 15
+/*
+diffSecondByDayjs('2021-01-15T14:44:40.263+08:00','2021-01-15T14:44:00.001+08:00'); // 40
+diffSecondByDayjs('2021-01-15 15:26:30','2021-01-15 15:26:45'); // 15
+*/
 export function diffSecondByDayjs(start, end) {
   const date1 = dayjs(start);
   const date2 = dayjs(end);
-  let diffTime = Math.abs(date1.diff(date2, 'second')); //获取两个时间对象相差的秒数，取绝对值。要查相差天数，第二个参数传day
+  let diffTime = Math.abs(date1.diff(date2, 'second')); //获取两个时间对象相差的秒数，取绝对值。要查相差天数，第二个参数传 'day'
   return diffTime;
 }
