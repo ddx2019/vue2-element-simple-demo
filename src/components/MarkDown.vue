@@ -51,6 +51,7 @@ export default {
     },
     handleImgChange(value, render) {
       // render 为 markdown 解析后的结果,
+
       this.html = render;
     },
     submit() {

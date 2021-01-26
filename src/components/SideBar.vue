@@ -74,6 +74,18 @@ export default {
           title: 'markdown编辑器'
         },
         {
+          icon: 'el-icon-info',
+          index: 'antdIcon',
+          title: 'antd的icon'
+        },
+
+        {
+          icon: 'el-icon-files',
+          index: 'tabs',
+          title: 'tabs选项卡'
+        },
+
+        {
           icon: 'el-icon-document',
           index: 'pdf',
           title: '预览PDF'

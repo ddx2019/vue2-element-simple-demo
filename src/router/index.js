@@ -33,6 +33,17 @@ const routes = [
         meta: { title: 'MarkDown' }
       },
       {
+        path: '/antdIcon',
+        name: 'antdIcon',
+        component: () => import('@/views/pages/UsedAntdIcon.vue'),
+        meta: { title: 'antds的icon组件' }
+      },
+      {
+        path: '/tabs',
+        component: () => import('../components/Tabs.vue'),
+        meta: { title: 'tab选项卡' }
+      },
+      {
         path: '/pdf',
         name: 'pdf',
         component: () => import('@/views/pages/PreviewPDF.vue'),
@@ -57,11 +68,7 @@ const routes = [
     component: () => import('@/views/login'),
     meta: { title: '登录' }
   },
-  {
-    path: '/tabs',
-    component: () => import('../components/Tabs.vue'),
-    meta: { title: 'tab选项卡' }
-  },
+
   {
     path: '*',
     redirect: '/404'
