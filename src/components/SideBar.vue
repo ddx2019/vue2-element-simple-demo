@@ -86,6 +86,11 @@ export default {
         },
 
         {
+          icon: 'el-icon-rank',
+          index: 'dragList',
+          title: '拖拽列表'
+        },
+        {
           icon: 'el-icon-files',
           index: 'tabs',
           title: 'tabs选项卡'

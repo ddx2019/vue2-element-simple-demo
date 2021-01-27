@@ -13,8 +13,14 @@
         Page:
         <span id="page_num">{{ currentPage }}</span>
         /
-        <span id="page_count">{{ totalPages }}</span></span
-      >
+        <span id="page_count">{{ totalPages }}</span>
+
+        <br />
+        <br />
+        <span style="color:#aaa">
+          pdf预览可参考：https://github.com/ddx2019/vue2-pdfjs-demo
+        </span>
+      </span>
     </h1>
     <div
       :style="`margin:0 auto;width:${pdfWidth};`"

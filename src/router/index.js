@@ -63,6 +63,12 @@ const routes = [
         meta: { title: 'videojs播放m3u8文件' }
       },
       {
+        path: '/dragList',
+        name: 'dragList',
+        component: () => import('@/views/pages/UsedVueDraggable.vue'),
+        meta: { title: '拖拽列表' }
+      },
+      {
         path: '/hlsjs',
         name: 'hlsjs',
         component: () => import('@/components/tests/video/hlsjsTest.vue'),
