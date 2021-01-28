@@ -1,0 +1,119 @@
+// 文本超出隐藏
+.text-hide_single {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.text-hide_multiple {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; //显示两行
+}
+
+// 重写弹窗样式
+.comn_dialog {
+  .el-dialog__header {
+    padding: 8px 0px 3px 8px;
+    border-bottom: 1px solid #e7e6e6;
+    box-shadow: 0px 4px 4px -4px #d1d0d0;
+  }
+  .el-dialog__title {
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #464646;
+    font-weight: bolder;
+  }
+  .el-dialog__footer {
+    padding: 0px 20px 20px 0px;
+  }
+  .el-dialog__headerbtn {
+    position: static; // 兼容IE11 ,取消原有的position定位
+  }
+  .el-dialog__close {
+    color: #409eff;
+    font-size: 20px;
+    font-weight: bolder;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    &::after {
+      content: '';
+      border: 2px solid #409eff;
+      width: 20px;
+      height: 20px;
+      border-radius: 25px;
+      position: absolute;
+      right: -2px;
+      top: -3px;
+    }
+  }
+  .el-dialog__body {
+    padding: 20px;
+  }
+}
+
+// 两栏布局，左树右表的形式
+.comn_layout {
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: auto;
+  ._left,
+  ._right {
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid $border_color;
+    height: calc(100vh - 180px);
+    // overflow: auto;
+  }
+  ._left {
+    width: 250px;
+    margin-right: 5px;
+  }
+  ._right {
+    width: calc(100% - 260px);
+  }
+}
+
+// 公共title ，
+.comn_title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 10px;
+  background: $title_bg;
+  border-bottom: 1px solid $border_color;
+  color: #3096ed;
+}
+
+// btns距右侧盒子10px,盒子之间的间距
+.mr10 {
+  margin-right: 10px;
+}
+.mb20 {
+  margin-bottom: 20px;
+}
+.mga20 {
+  margin: 20px;
+}
+.mgb20 {
+  margin-bottom: 20px;
+}
+.operate_font {
+  letter-spacing: 2px;
+  color: #ff6347;
+  font-size: 16px;
+  font-weight: 600;
+}
+//max-width  1920
+@media screen and (max-device-width: 1920px) {
+}
+//  Firefox
+@-moz-document url-prefix() {
+}
+/*  IE10 IE11 */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+}
