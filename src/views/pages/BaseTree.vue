@@ -138,7 +138,7 @@ export default {
       ],
       defaultProps: {
         children: 'children',
-        label: 'name' // 这个label的值和treeList中的字段label要对应
+        label: 'label' // 这个label的值和treeList中的字段label要对应
       },
       nodeKey: 'menuId',
       contextMenu: [],
