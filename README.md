@@ -1,7 +1,5 @@
 # vue2-element-simple-demo
-<<<<<<< HEAD
-vue2+ElementUI的后台简易系统，有一些平常用到的方法
-=======
+vue2+ElementUI的后台简易系统
 
 1. vue2+ElementUI 的后台简易系统,
 2. 该系统基于林鑫 的 vue-manage-system（github 地址：https://github.com/lin-xin/vue-manage-system），
@@ -42,4 +40,3 @@ yarn lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
->>>>>>> e40e4a43598b3a229d9bd069ed0fd468acbc245b
