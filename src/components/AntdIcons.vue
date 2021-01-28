@@ -6,6 +6,7 @@
       :visible.sync="visible"
       width="750px"
       top="26vh"
+      v-dialogDrag
     >
       <el-tabs v-model="activeName">
         <el-tab-pane label="方向性图标" name="directionIcons">
