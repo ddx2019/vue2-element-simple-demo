@@ -36,42 +36,26 @@
 
 ![](project-img/video.jpg)
 
+## 安装步骤
+
+```
+git clone https://github.com/ddx2019/vue2-element-simple-demo.git  // 克隆项目
+
+cd vue2-element-simple-demo  // 进入项目根目录
+
+yarn install  // 安装项目依赖，等待安装完成；也可用 npm 或 cnpm
+
+yarn serve   // 启动项目
+
+yarn build  // 执行构建命令
+```
+
 ## 相关描述
 
 1. CSDN 主页：https://blog.csdn.net/ddx2019
 2. 掘金主页：https://juejin.cn/user/254742429707175
 3. vue-manage-system 项目的 github 地址： https://github.com/lin-xin/vue-manage-system
 
-## Project setup
+### 自定义配置
 
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-
-```
-yarn build
-```
-
-### Run your unit tests
-
-```
-yarn test:unit
-```
-
-### Lints and fixes files
-
-```
-yarn lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+配置参考：https://cli.vuejs.org/config/
