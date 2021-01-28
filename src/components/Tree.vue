@@ -160,6 +160,7 @@ export default {
     },
     // 选中树节点的方法，修改的时候，id未变，子组件监听不到父组件传入的id变化，故采取了父组件主动获取子组件的方法
     setCurrTreeNode(id) {
+      console.log(id, 'dede');
       this.$refs['comnTree'].setCurrentKey(id);
     },
     handleClickDoc(e) {

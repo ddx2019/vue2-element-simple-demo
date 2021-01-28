@@ -231,7 +231,7 @@ export default {
   },
   mounted() {
     this.btns = this.$getOperateInfo('THE_EXAMPLE');
-    this.getData(this.tableInfo);
+    this.getTableData(this.tableInfo);
 
     window.onresize = () => {
       this.tableHeight = this.$getViewHeight() - 325;
@@ -288,16 +288,16 @@ export default {
     },
     handleSizeChange(val) {
       this.$set(this.tableInfo, 'pageSize', val);
-      this.getData(this.tableInfo);
+      this.getTableData(this.tableInfo);
     },
     handleCurrentChange(val) {
       this.$set(this.tableInfo, 'pageNum', val);
-      this.getData(this.tableInfo);
+      this.getTableData(this.tableInfo);
     },
     handleRefreshTable(val) {
       this.$set(this.tableInfo, 'pageNum', val.current);
       this.$set(this.tableInfo, 'pageSize', val.pageSize);
-      this.getData(this.tableInfo);
+      this.getTableData(this.tableInfo);
     },
     resetPopupData() {
       this.tableInOuterP = [];
@@ -323,10 +323,10 @@ export default {
           ruleIds: rids
         };
         if (name === '添加') {
-          this.getRulePjctAdd(info);
+          this.getAddData(info);
         } else {
           info['id'] = this.FormInAddPopup.id; // 比添加多一个必传的参，id
-          this.getRulePjctEdit(info);
+          this.getEditData(info);
         }
       });
     },
@@ -337,7 +337,7 @@ export default {
         (ele) => ele.id !== row.id
       );
     },
-    getData(info) {
+    getTableData(info) {
       fetchData(info)
         .then((res) => {
           // console.log(res);
@@ -349,7 +349,7 @@ export default {
         });
     },
 
-    getRulePjctAdd(info) {
+    getAddData(info) {
       this.$message.success('添加成功');
       this.reload();
     },
@@ -363,7 +363,7 @@ export default {
         }
       ];
     },
-    getRulePjctEdit(info) {
+    getEditData(info) {
       this.$message.success('修改成功');
       this.reload();
     },
@@ -422,12 +422,7 @@ export default {
       top: 36%;
     }
   }
-  .operate_font {
-    letter-spacing: 2px;
-    color: #ff6347;
-    font-size: 16px;
-    font-weight: 600;
-  }
+
   .table-container {
     margin: 0 20px 10px 20px;
   }

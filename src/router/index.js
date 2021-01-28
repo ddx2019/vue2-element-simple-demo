@@ -26,7 +26,12 @@ const routes = [
         component: () => import('@/views/pages/BaseTable.vue'),
         meta: { title: '基础表格' }
       },
-
+      {
+        path: '/tree',
+        name: 'tree',
+        component: () => import('@/views/pages/BaseTree.vue'),
+        meta: { title: '基础表格' }
+      },
       {
         path: '/markdown',
         name: 'markdown',

@@ -7,7 +7,7 @@ import API from '@/api/api.js';
  */
 export function fetchData(info) {
   return axios({
-    url: './table.json',
+    url: API.BASE_TABLE,
     method: 'get',
     params: {
       ...info

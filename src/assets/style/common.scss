@@ -102,7 +102,12 @@
 .mgb20 {
   margin-bottom: 20px;
 }
-
+.operate_font {
+  letter-spacing: 2px;
+  color: #ff6347;
+  font-size: 16px;
+  font-weight: 600;
+}
 //max-width  1920
 @media screen and (max-device-width: 1920px) {
 }

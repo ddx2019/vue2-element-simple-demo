@@ -12,6 +12,7 @@
           :contextMenu="contextMenu"
           :rightFlag="rightFlag"
           :expandedKeys="expandedKeys"
+          :defaultProps="defaultProps"
           @handleNodeClick="handleNodeClick"
           @handleRightClick="handleRightClick"
           @handleClickTreeMenu="handleClickTreeMenu"
@@ -20,164 +21,129 @@
       </div>
       <div class="_right">
         <p class="comn_title">
-          基础信息管理
+          详细信息
         </p>
-        <div class="mga20">
-          <comn-btn :btns="btns" @handleClickBtn="handleClickBtn"></comn-btn>
-        </div>
-
-        <div class="table-container">
-          <el-table
-            ref="multipleTable"
-            v-loading="isLoading"
-            :data="tableData"
-            border
-            element-loading-text="加载中..."
-            :highlight-current-row="true"
-            :height="tableHgt"
-            tooltip-effect="dark"
-            style="width: 100%"
-            @selection-change="handleSelectionChange"
-          >
-            <el-table-column
-              type="selection"
-              width="55"
-              align="center"
-            ></el-table-column>
-
-            <el-table-column
-              prop="name"
-              label="用户名"
-              width="150"
-              align="center"
-              show-overflow-tooltip
-            ></el-table-column>
-            <el-table-column label="状态" align="center">
-              <template v-slot="scope">
-                <el-tag v-if="filterFlag(scope.row.status)" type="success"
-                  >成功</el-tag
-                >
-                <el-tag v-else type="danger">失败</el-tag>
-              </template>
-            </el-table-column>
-            <el-table-column label="头像(查看大图)" align="center">
-              <template v-slot="scope">
-                <el-image
-                  class="table-td-thumb"
-                  :src="scope.row.thumb"
-                  :preview-src-list="[scope.row.thumb]"
-                ></el-image>
-              </template>
-            </el-table-column>
-            <el-table-column prop="address" label="地址"></el-table-column>
-
-            <el-table-column label="操作时间" align="center">
-              <template v-slot="scope">
-                {{ filterDate(scope.row.date) }}
-              </template>
-            </el-table-column>
-            <el-table-column label="操作" align="center">
-              <template slot-scope="scope">
-                <button
-                  class="download_btn mr10"
-                  @click="handleClickRow(scope.row)"
-                >
-                  <i class="el-icon-edit"></i> 修改
-                </button>
-                <button class="detail_btn " @click="handleClickRow(scope.row)">
-                  <i class="el-icon-delete"></i> 删除
-                </button>
-              </template>
-            </el-table-column>
-          </el-table>
-
-          <comn-pagination
-            :total="myPages.total"
-            :limit.sync="myPages.pageSize"
-            :page.sync="myPages.currentPage"
-            :hidden="myPages.total <= 0"
-            @handleCurrentChange="handleCurrentChange"
-            @handleSizeChange="handleSizeChange"
-            @handleRefreshTable="handleRefreshTable"
-          ></comn-pagination>
-        </div>
+        <p>这是内容列表</p>
       </div>
     </div>
+    <comn-dialog
+      :dialogTitle="popupTitle"
+      :centerDialogVisible="centerDialogVisible"
+      @resetPopupData="resetPopupData"
+      @submitPopupData="submitPopupData"
+      @updateVisible="updateVisible"
+    >
+      <template v-if="filterAddUpdate(popupTitle)">
+        <el-form
+          :model="formInPopup"
+          ref="FromInPopup"
+          :rules="rules"
+          :inline="true"
+          label-width="115px"
+        >
+          <el-form-item label="名称：" prop="label">
+            <el-input type="text" v-model="formInPopup.label"></el-input>
+          </el-form-item>
+          <el-form-item label="描述：" prop="desc">
+            <el-input type="text" v-model="formInPopup.desc"></el-input>
+          </el-form-item>
+        </el-form>
+      </template>
+      <template v-else>
+        <p class="enable_font">
+          <i class="el-icon-info"></i>
+          <span
+            >确定要
+            <em class="operate_font">{{ popupTitle }}</em>
+            吗？</span
+          >
+        </p>
+      </template>
+    </comn-dialog>
   </div>
 </template>
 
 <script>
-import { fetchData } from '@/request/BaseTable.js';
-import { formatDateTime } from '@/utils/formatDateTime.js';
 export default {
   inject: ['reload'],
   data() {
     return {
-      btns: [],
-      tableData: [],
-      tableInfo: {
-        pageNum: 1,
-        pageSize: 10
-      },
-
-      multipleSelection: [],
-      isLoading: false,
-      myPages: {
-        pageSize: 10,
-        pageNum: 1,
-        pages: 3,
-        total: 30
-      },
-      tableInOuterP: [], // 规则表格
-
       centerDialogVisible: false,
       popupTitle: '',
-      FormInAddPopup: {
-        name: '', // 用户名
-        address: '' // 地址
-      },
-      rules: {
-        name: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-        address: [{ required: true, message: '地址不能为空', trigger: 'blur' }]
-      },
-      ruleVisible: false, // 选规则的弹框 显示与否
-      tableHeight: '',
+
       expandedKeys: [], // 默认展开的树形菜单列表
       rightFlag: false,
       treeList: [
         {
-          name: '四川省',
-          menuId: 'SiChuan'
+          menuId: 1,
+          label: '一级 1',
+          parentMenuId: 0,
+          children: [
+            {
+              menuId: 4,
+              label: '二级 1-1',
+              parentMenuId: 1,
+              children: [
+                {
+                  menuId: 9,
+                  label: '三级 1-1-1',
+                  parentMenuId: 4
+                },
+                {
+                  menuId: 10,
+                  label: '三级 1-1-2',
+                  parentMenuId: 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          menuId: 2,
+          label: '一级 2',
+
+          parentMenuId: 0,
+          children: [
+            {
+              menuId: 5,
+              label: '二级 2-1',
+              parentMenuId: 2
+            },
+            {
+              menuId: 6,
+              label: '二级 2-2',
+              parentMenuId: 2
+            }
+          ]
         }
       ],
+      defaultProps: {
+        children: 'children',
+        label: 'label'
+      },
       nodeKey: 'menuId',
-      contextMenu: []
+      contextMenu: [],
+      formInPopup: {
+        label: '', // 名称
+        desc: '' // 描述
+      },
+      rules: {
+        label: [{ required: true, message: '请输入名称', trigger: 'blur' }]
+      },
+      tableInfo: {
+        // 按用户自定义分组 请求规则
+        pageNum: 1,
+        pageSize: 10,
+        menuId: '1328584694' // 分组id ，默认显示规则分组下的规则
+      },
+      treeMenuItem: {}
     };
-  },
-  computed: {
-    tableHgt() {
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      this.tableHeight = this.$getViewHeight() - 335;
-      return this.tableHeight;
-    },
-    popupWidth() {
-      return this.filterAddUpdate(this.popupTitle) ? '720px' : '415px';
-    },
-    popupTop() {
-      return this.filterAddUpdate(this.popupTitle) ? '15vh' : '23vh';
-    },
-    currRuleLis() {
-      // 修改的时候，选中的规则列表，用于规则表格数据的回显
-      return this.tableInOuterP;
-    },
-    isViewDtl() {
-      return this.popupTitle === '查看详情' ? true : false;
-    }
   },
   watch: {
     treeMenuItem(newVal, old) {
+      // console.log(newVal, 'newval');
       // 右键菜单的内容随右键单击的树变化
-      if (newVal.parentMenuId == '0') {
+      if (newVal.parentMenuId === 0) {
         this.contextMenu = [
           {
             name: '添加分组',
@@ -202,37 +168,21 @@ export default {
       }
     }
   },
-  mounted() {
-    this.btns = this.$getOperateInfo('SCHEME_TEMP');
-    this.getData(this.tableInfo);
-
-    window.onresize = () => {
-      this.tableHeight = this.$getViewHeight() - 335;
-    };
-  },
-
   methods: {
-    updateCopyVisible(val) {
-      this.copyVisible = val;
+    updateVisible(val) {
+      this.centerDialogVisible = false;
     },
-
     updateTreeMenu(val) {
       this.rightFlag = val;
     },
     handleNodeClick(data) {
-      if (this.isGroupActive) {
-        this.$set(this.rUserBasis, 'menuId', data.menuId);
-        this.getRuleTable(this.rUserBasis);
-      } else {
-        this.$set(this.rSysBasis, 'ruleType', data.id);
-        this.getRuleTable(this.rSysBasis);
-      }
+      this.$set(this.tableInfo, 'menuId', data.menuId);
+      // this.getTableData(this.tableInfo); // 获取右侧表格信息
     },
     handleRightClick(obj) {
-      if (this.isGroupActive) {
-        this.rightFlag = true;
-        this.treeMenuItem = obj;
-      }
+      console.log('obj', obj);
+      this.rightFlag = true;
+      this.treeMenuItem = obj;
     },
     handleClickTreeMenu(name) {
       this.popupTitle = name;
@@ -241,8 +191,8 @@ export default {
         this.formInPopup = {};
       }
       if (name === '编辑分组') {
-        this.$set(this.formInPopup, 'name', this.treeMenuItem.name);
-        this.$set(this.formInPopup, 'sort', this.treeMenuItem.sort);
+        this.$set(this.formInPopup, 'name', this.treeMenuItem.label);
+        this.$set(this.formInPopup, 'desc', this.treeMenuItem.desc);
       } else if (name === '删除') {
         this.popupTitle = '删除分组';
       }
@@ -253,193 +203,67 @@ export default {
         this.$refs[formName].clearValidate();
       }
     },
-    handleClickBtn(val) {
-      this.popupTitle = val.name;
-      switch (val.value) {
-        case 'add':
-          this.clickAddBtn();
-          break;
-        case 'del':
-          this.clickDelBtn();
-          break;
-        default:
-          this.clickEditOrViewBtn();
-          break;
-      }
-    },
-    clickAddBtn() {
-      this.resetPopupData();
-      this.centerDialogVisible = true;
-    },
-    clickEditOrViewBtn() {
-      let len = this.multipleSelection.length;
-      if (len === 1) {
-        this.centerDialogVisible = true;
-        this.getRulePjctDetail(this.multipleSelection[0].id);
-      } else {
-        len > 1
-          ? this.$message.warning(`${this.popupTitle}操作，只能选择一条数据`)
-          : this.$message.warning(`请选择要${this.popupTitle}的数据`);
-      }
-    },
-    clickDelBtn() {
-      this.multipleSelection.length > 0
-        ? (this.centerDialogVisible = true)
-        : this.$message.warning(`请选择要删除的数据`);
-    },
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
-    },
-    handleClickRow(row) {
-      console.log(row);
-    },
-    handleSizeChange(val) {
-      this.$set(this.tableInfo, 'pageSize', val);
-      this.getData(this.tableInfo);
-    },
-    handleCurrentChange(val) {
-      this.$set(this.tableInfo, 'pageNum', val);
-      this.getData(this.tableInfo);
-    },
-    handleRefreshTable(val) {
-      this.$set(this.tableInfo, 'pageNum', val.current);
-      this.$set(this.tableInfo, 'pageSize', val.pageSize);
-      this.getData(this.tableInfo);
-    },
+
     resetPopupData() {
-      this.tableInOuterP = [];
-      this.FormInAddPopup = {};
+      this.formInPopup = {};
       this.centerDialogVisible = false;
-      this.cancelFormValidate('FormInAddPopup');
+      this.cancelFormValidate('FromInPopup');
     },
     submitPopupData() {
       let name = this.popupTitle;
-      if (name === '删除') {
-        let ids = this.multipleSelection.map((val) => val.id).toString();
-        this.getRulePjctDel(ids);
-        return false;
+      if (name === '删除分组') {
+        this.getDelGroup(this.treeMenuItem.menuId);
+        return;
       }
-      this.$refs.FormInAddPopup.validate((valid) => {
+      this.$refs.FromInPopup.validate((valid) => {
         if (!valid) return false;
-        //  添加或修改
-        let rids = this.tableInOuterP.map((val) => val.id).toString();
         let info = {
-          isTemplate: 1,
-          name: this.FormInAddPopup.name,
-          address: this.FormInAddPopup.address,
-          ruleIds: rids
+          label: this.formInPopup.name,
+          desc: this.formInPopup.desc
         };
-        if (name === '添加') {
-          this.getRulePjctAdd(info);
-        } else {
-          info['id'] = this.FormInAddPopup.id; // 比添加多一个必传的参，id
-          this.getRulePjctEdit(info);
+        //  添加或修改
+        if (name === '添加分组') {
+          (info['parentMenuId'] = this.treeMenuItem.menuId), // 当前的menuId作为parentId
+            this.getAddGroup(info);
+        } else if (name === '编辑分组') {
+          info['menuId'] = this.treeMenuItem.menuId; // 自己的id
+          this.getEditGroup(info);
         }
       });
     },
-    delTheRow(row) {
-      // let index = this.tableInOuterP.findIndex((ele) => ele.id === row.id);
-      // this.tableInOuterP.splice(index, 1);
-      this.tableInOuterP = this.tableInOuterP.filter(
-        (ele) => ele.id !== row.id
-      );
+    async getGroupTree() {
+      // await groupTree()
+      //   .then((res) => {
+      //     if (res.data.code === 0) {
+      //       this.treeList = res.data.result;
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
     },
-    getData(info) {
-      fetchData(info)
-        .then((res) => {
-          console.log(res);
-          this.tableData = res.list;
-          this.$set(this.myPages, 'total', res.pageTotal);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-
-    getRulePjctAdd(info) {
+    getAddGroup(info) {
       this.$message.success('添加成功');
+      // this.handleRefreshTree(res.data.result.menuId);
       this.reload();
     },
-    getRulePjctDetail(id) {
-      // 获取详情，回显数据
-      // this.FormInAddPopup = res.result;
-      this.tableInOuterP = [
-        {
-          name: '新用户-1',
-          address: '四川成都'
-        }
-      ];
-    },
-    getRulePjctEdit(info) {
+    getEditGroup(info) {
       this.$message.success('修改成功');
+      // this.handleRefreshTree(res.data.result.menuId);
       this.reload();
     },
-    getRulePjctDel(ids) {
+    getDelGroup() {
       this.$message.success('删除成功');
       this.reload();
     },
-    filterDate(date) {
-      return date && formatDateTime(date);
-    },
-    filterFlag(status) {
-      return status === 1 ? '成功' : '失败';
+    handleRefreshTree(id) {
+      // 添加、修改成功,展开tree，刷新树形菜单，并选中当前编辑过的树节点
+      // this.getGroupTree().then(() => {
+      //   this.expandedKeys = [id];
+      //   this.$refs.comnTree.setCurrTreeNode(id); // 主动获取子组件选中树节点的方法
+      // });
     }
   }
 };
 </script>
-<style lang="scss">
-.base-table {
-  .table-td-thumb {
-    display: block;
-    margin: auto;
-    width: 40px;
-    height: 40px;
-  }
-  //表格中的操作栏样式
-  .download_btn {
-    background: #409eff;
-    border: 1px solid #409eff;
-    color: #fff;
-    padding: 2px;
-    cursor: pointer;
-  }
-  .detail_btn {
-    // warning : #ffb800;
-    background: #f56c6c;
-    border: 1px solid #f56c6c;
-    color: #fff;
-    padding: 2px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  //删除等确认框中的style
-  .enable_font {
-    padding: 20px;
-    position: relative;
-    i {
-      font-size: 30px;
-      margin-right: 10px;
-      color: #e6a23c;
-    }
-    span {
-      font-size: 16px;
-      color: #333;
-      letter-spacing: 1px;
-      position: absolute;
-      top: 36%;
-    }
-  }
-  .operate_font {
-    letter-spacing: 2px;
-    color: #ff6347;
-    font-size: 16px;
-    font-weight: 600;
-  }
-  .table-container {
-    margin: 0 20px 10px 20px;
-  }
-  .bd_right {
-    border: 1px solid $border_color;
-  }
-}
-</style>
+<style lang="scss"></style>

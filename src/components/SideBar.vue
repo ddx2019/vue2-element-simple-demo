@@ -69,14 +69,26 @@ export default {
           title: '基础表格'
         },
         {
+          icon: 'el-icon-folder-opened',
+          index: '/tree',
+          title: '树形菜单'
+        },
+        {
           icon: 'el-icon-notebook-2',
           index: 'markdown',
           title: '编辑器'
         },
         {
-          icon: 'el-icon-document',
+          icon: 'el-icon-bangzhu',
           index: 'cronExp',
-          title: 'cron表达式'
+          title: '定时任务',
+          subs: [
+            {
+              icon: 'el-icon-document',
+              index: 'cronExp',
+              title: 'cron表达式'
+            }
+          ]
         },
 
         {
@@ -105,18 +117,6 @@ export default {
           icon: 'el-icon-video-camera',
           index: 'videojs',
           title: 'videojs播放视频'
-        },
-        {
-          icon: 'el-icon-bangzhu',
-          index: 'task',
-          title: '定时任务',
-          subs: [
-            {
-              icon: 'el-icon-bangzhu',
-              index: 'task',
-              title: '任务管理'
-            }
-          ]
         }
       ]
     };
