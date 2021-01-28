@@ -64,6 +64,42 @@
 </template>
 
 <script>
+/* 关于树形菜单 treeList, 注意 注意数据格式：
+       1. 如果后台给的是以parentId和id关联的扁平数组 ，则可调用utils文件夹下的formTheTree.js 中的formTreeByParentId方法将其拼接成树形菜单，
+       2. 若后台给的是树形菜单，在需要用到扁平数组的时候，则可 调用 treeConvertToArr.js的方法，将树形菜单转换为组员的数据。
+        扁平数组，如下：
+*/
+/*
+import { formTreeByParentId } from '../../utils/formTheTree.js';
+import { treeConvertToArr } from '../../utils/treeConvertToArr.js';
+let data = [
+  {
+    id: 1,
+    name: '一级 1',
+    parentId: 0
+  },
+  {
+    id: 4,
+    name: '二级 1-1',
+    parentId: 1
+  },
+  {
+    id: 9,
+    name: '三级 1-1-1',
+    parentId: 4
+  },
+  {
+    id: 10,
+    name: '三级 1-1-2',
+    parentId: 4
+  }
+];
+let result = formTreeByParentId(data, 0); // 参数1是数组，参数2是顶层id,这条数据的顶层id为0
+console.log(result, 'result');
+// 此时调 treeConvertToArr：可将result变为原来的data:
+let arrs = treeConvertToArr(result);
+console.log('arrs:', arrs);
+*/
 export default {
   inject: ['reload'],
   data() {
@@ -74,52 +110,35 @@ export default {
       expandedKeys: [], // 默认展开的树形菜单列表
       rightFlag: false,
       treeList: [
+        // 等价于上面的result;
         {
           menuId: 1,
           label: '一级 1',
-          parentMenuId: 0,
+          parentId: 0,
           children: [
             {
               menuId: 4,
               label: '二级 1-1',
-              parentMenuId: 1,
+              parentId: 1,
               children: [
                 {
                   menuId: 9,
                   label: '三级 1-1-1',
-                  parentMenuId: 4
+                  parentId: 4
                 },
                 {
                   menuId: 10,
                   label: '三级 1-1-2',
-                  parentMenuId: 4
+                  parentId: 4
                 }
               ]
-            }
-          ]
-        },
-        {
-          menuId: 2,
-          label: '一级 2',
-
-          parentMenuId: 0,
-          children: [
-            {
-              menuId: 5,
-              label: '二级 2-1',
-              parentMenuId: 2
-            },
-            {
-              menuId: 6,
-              label: '二级 2-2',
-              parentMenuId: 2
             }
           ]
         }
       ],
       defaultProps: {
         children: 'children',
-        label: 'label'
+        label: 'label' // 这个label的值和treeList中的字段label要对应
       },
       nodeKey: 'menuId',
       contextMenu: [],
@@ -143,7 +162,7 @@ export default {
     treeMenuItem(newVal, old) {
       // console.log(newVal, 'newval');
       // 右键菜单的内容随右键单击的树变化
-      if (newVal.parentMenuId === 0) {
+      if (newVal.parentId === 0) {
         this.contextMenu = [
           {
             name: '添加分组',
@@ -223,7 +242,7 @@ export default {
         };
         //  添加或修改
         if (name === '添加分组') {
-          (info['parentMenuId'] = this.treeMenuItem.menuId), // 当前的menuId作为parentId
+          (info['parentId'] = this.treeMenuItem.menuId), // 当前的menuId作为parentId
             this.getAddGroup(info);
         } else if (name === '编辑分组') {
           info['menuId'] = this.treeMenuItem.menuId; // 自己的id

@@ -29,7 +29,7 @@ function getChilds(id, array) {
  * @param {*} id - 顶层的id，父级
  */
 
-export function formTreeByParentId(records, parentId) {
+export function formTreeByParentId(records, id) {
   var result = [];
   records.forEach((val) => {
     if (val.parentId === id) {

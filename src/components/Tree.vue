@@ -61,6 +61,7 @@ export default {
   },
   props: {
     treeList: {
+      // 包含了nodeKey和defaultProps的所有内容[{name:'dsdd',id:1,children:[{id:2,name:'dekse'}]}]
       type: Array
     },
     defaultProps: {
@@ -68,7 +69,7 @@ export default {
       default() {
         return {
           children: 'children',
-          label: 'name'
+          label: 'name' // 这个label的值，在treeList中必须有对应的属性名才能显示出来
           // isLeaf: "leaf" //需要加叶子节点的页面
         };
       }
@@ -77,7 +78,7 @@ export default {
       // 每个树节点用来作为唯一标识的属性，整棵树应该是唯一的
       type: String,
       default() {
-        return 'menuId';
+        return 'id';
       }
     },
     contextMenu: {
