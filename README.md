@@ -1,6 +1,5 @@
 # vue2-element-simple-demo
 vue2+ElementUI的后台简易系统
-=======
 
 ## Project setup
 ```
