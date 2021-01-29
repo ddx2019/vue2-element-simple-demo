@@ -53,8 +53,11 @@ yarn build  // 执行构建命令
 
 ## 相关引用和描述
 1.vue-manage-system 项目的 github 地址： https://github.com/lin-xin/vue-manage-system （项目的主体设计源于该项目）
+
 2.项目Jeecg-Boot： http://boot.jeecg.com/isystem/newPermissionList （icon选择器和cron表达式源于该项目）
+
 3.作者的CSDN 主页：https://blog.csdn.net/ddx2019
+
 4.作者的掘金主页：https://juejin.cn/user/254742429707175
 
 ### 自定义配置
