@@ -78,6 +78,11 @@ const routes = [
         name: 'hlsjs',
         component: () => import('@/components/tests/video/hlsjsTest.vue'),
         meta: { title: 'videojs播放m3u8文件' }
+      },
+      {
+        path: '/404',
+        component: () => import('@/components/404.vue'),
+        meta: { title: '404' }
       }
     ]
   },
